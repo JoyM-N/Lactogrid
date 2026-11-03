@@ -1,0 +1,19 @@
+# Fictional demo centre. Equipment sizes are assumptions for the sunny-day
+# scenario, not a survey of a real cooperative. TODO(verify) against a site survey.
+id: demo-site
+name: Demo Collection Centre
+location: Kenya (fictional demo site)
+timezone: Africa/Nairobi
+cooperative_id: demo-coop
+solar_kwp: 12
+compressor_kw_electric: 3
+cold_store_kwh_thermal: 60
+battery_kwh: 3
+tank_litres: 2000
+# 600 L/day keeps the delivery rate inside the 5.5 kW tank limit on a sunny day.
+# A faster delivery can climb above 6 C even with a full cold store, because the
+# tank cannot reject heat faster than that. TODO(verify) against real volumes.
+daily_milk_litres: 600
+config_version: 1
+grid_connected: true
+diesel_available: true

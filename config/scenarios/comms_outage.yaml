@@ -1,0 +1,25 @@
+name: comms_outage
+description: Sunny demo day with the internet down for six hours. The edge keeps logging; sync must replay without duplicates.
+seed: 5
+start: "2026-06-01T00:00:00+03:00"
+duration_hours: 48
+step_seconds: 60
+timezone: Africa/Nairobi
+weather:
+  cloudiness: 0.05
+site_file: config/sites/demo.yaml
+site_overrides:
+  id: comms-outage-site
+  name: Comms Outage Demo Centre
+initial_state:
+  tank_temp_c: 4.0
+  milk_volume_l: 0
+  store_soc_pct: 75
+  battery_soc_pct: 80
+faults:
+  - type: internet_outage
+    start: "2026-06-01T08:00:00+03:00"
+    end: "2026-06-01T14:00:00+03:00"
+expect:
+  link_down_hours: 6
+  requires_controller: false

@@ -1,0 +1,102 @@
+/* Space Grotesk and DM Sans are used under the SIL Open Font License. */
+@font-face {
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/space-grotesk-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../fonts/space-grotesk-600.woff2") format("woff2");
+}
+@font-face {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/dm-sans-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/dm-sans-500.woff2") format("woff2");
+}
+
+:root {
+  color-scheme: light;
+  --bg: #f4f7f9;
+  --surface: #ffffff;
+  --line: #d9e2e8;
+  --ink: #12263a;
+  --muted: #5b6b78;
+  --solar: #e9a23b;
+  --solar-text: #94560a;
+  --cold: #1f78b4;
+  --cold-tint: #bfd0dc;
+  --ok: #2a7d59;
+  --warn: #b7791f;
+  --bad: #c8372d;
+  --on-cold: #ffffff;
+  --ok-tint: #e5f4ec;
+  --warn-tint: #f8efd8;
+  --bad-tint: #f8e4e2;
+  --nav-bg: #0c1a28;
+  --nav-surface: #12263a;
+  --nav-ink: #e8eef3;
+  --nav-muted: #9db0bf;
+  --nav-ok: #5cc49a;
+  --nav-active: #1f78b4;
+  --nav-on: #ffffff;
+  --heading: "Space Grotesk", "Segoe UI", sans-serif;
+  --body: "DM Sans", "Segoe UI", sans-serif;
+  --space: 16px;
+  --radius: 16px;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0c1a28;
+  --surface: #12263a;
+  --line: #25405a;
+  --ink: #e8eef3;
+  --muted: #9db0bf;
+  --solar: #f2b33d;
+  --solar-text: #f2b33d;
+  --cold: #5bb4e8;
+  --cold-tint: #25405a;
+  --ok: #5cc49a;
+  --warn: #f2b33d;
+  --bad: #f2736a;
+  --on-cold: #0c1a28;
+  --ok-tint: #16382c;
+  --warn-tint: #3a2e12;
+  --bad-tint: #3a1c1a;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #0c1a28;
+    --surface: #12263a;
+    --line: #25405a;
+    --ink: #e8eef3;
+    --muted: #9db0bf;
+    --solar: #f2b33d;
+    --solar-text: #f2b33d;
+    --cold: #5bb4e8;
+    --cold-tint: #25405a;
+    --ok: #5cc49a;
+    --warn: #f2b33d;
+    --bad: #f2736a;
+    --on-cold: #0c1a28;
+    --ok-tint: #16382c;
+    --warn-tint: #3a2e12;
+    --bad-tint: #3a1c1a;
+  }
+}

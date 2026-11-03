@@ -1,0 +1,20 @@
+name: sunny_day
+description: Clear day, demo hub sized for 1000 litres. Controller should hold milk at or below 6 C with little backup.
+seed: 1
+start: "2026-06-01T00:00:00+03:00"
+duration_hours: 48
+step_seconds: 60
+timezone: Africa/Nairobi
+weather:
+  cloudiness: 0.05
+site_file: config/sites/demo.yaml
+initial_state:
+  tank_temp_c: 4.0
+  milk_volume_l: 0
+  store_soc_pct: 75
+  battery_soc_pct: 80
+faults: []
+expect:
+  max_tank_temp_with_milk_c: 6
+  max_backup_kwh_per_day: 2
+  requires_controller: true

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LactoGrid</title>
+  <link rel="stylesheet" href="/static/css/tokens.css">
+  <link rel="stylesheet" href="/static/css/app.css?v=14">
+</head>
+<body>
+  <section class="login-screen" id="login-screen">
+    <div class="split">
+      <div class="split-brand">
+        <p class="logo"><i class="dot dot-solar"></i><i class="dot dot-cold"></i> LactoGrid</p>
+        <div class="split-copy">
+          <h1 id="hero-title">Cold milk,<br>powered by sun.</h1>
+          <p id="hero-lead">Monitor your cooling hub, see what it is doing and why, and keep proof that the milk stayed safe.</p>
+        </div>
+        <div class="sample">
+          <p class="sample-label" id="sample-label">Sample site</p>
+          <p class="sample-temp">3.9<span>°C</span></p>
+          <p class="sample-ok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2.2"/></svg> <span id="sample-safe">Milk safe</span></p>
+        </div>
+      </div>
+      <form class="split-form" id="login">
+        <h2 id="form-title">Sign in</h2>
+        <p class="muted" id="form-lead">Use the account your cooperative or LactoGrid gave you.</p>
+
+        <label for="name" id="name-label">Email or phone</label>
+        <input id="name" name="name" autocomplete="username" placeholder="name@cooperative.co.ke" required>
+
+        <label for="password" id="password-label">Password</label>
+        <div class="password-field">
+          <input id="password" name="password" type="password" autocomplete="current-password" placeholder="Your password" required>
+          <button class="eye" id="show-password" type="button" aria-label="Show password" aria-pressed="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+          </button>
+        </div>
+
+        <div class="form-row">
+          <label class="check" for="keep"><input id="keep" type="checkbox"> <span id="keep-label">Keep me signed in</span></label>
+          <button class="text-link" id="forgot" type="button">Forgot password?</button>
+        </div>
+
+        <p class="error" id="login-error" role="alert"></p>
+        <button class="primary" id="submit" type="submit">Sign in</button>
+
+        <p class="fine" id="no-account">No account? Ask your site administrator.</p>
+        <div class="accounts" id="accounts" hidden>
+          <button class="account" type="button" data-name="Ada" data-password="dev-only-admin">Ada · admin</button>
+          <button class="account" type="button" data-name="Baraka" data-password="dev-only-manager">Baraka · manager</button>
+          <button class="account" type="button" data-name="Chao" data-password="dev-only-viewer">Chao · viewer</button>
+        </div>
+        <p class="langs"><button type="button" id="lang-en" aria-pressed="true">English</button> · <button type="button" id="lang-sw" aria-pressed="false">Kiswahili</button></p>
+      </form>
+    </div>
+  </section>
+
+  <div class="workspace" id="workspace" hidden>
+    <aside class="side">
+      <p class="logo"><i class="dot dot-solar"></i><i class="dot dot-cold"></i> LactoGrid</p>
+      <nav class="side-nav" id="nav">
+        <a href="#overview">Overview</a>
+        <a href="#alerts">Alerts</a>
+        <a href="#sla">Reports</a>
+        <a href="#settings">Settings</a>
+      </nav>
+    </aside>
+    <div class="workspace-main">
+      <header class="topbar">
+        <div>
+          <label class="picker">Site
+            <select id="site-picker"></select>
+          </label>
+          <h1 class="site-title" id="site-name">LactoGrid</h1>
+          <p class="updated" id="updated"></p>
+        </div>
+        <p class="pill" id="top-status"></p>
+      </header>
+      <main id="view"></main>
+    </div>
+    <nav class="bottom-nav" aria-label="Sections">
+      <a href="#overview">Overview</a>
+      <a href="#alerts">Alerts</a>
+      <a href="#sla">Reports</a>
+      <a href="#settings">Settings</a>
+    </nav>
+  </div>
+  <script src="/static/js/app.js?v=14"></script>
+</body>
+</html>

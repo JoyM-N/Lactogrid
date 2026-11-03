@@ -1,0 +1,27 @@
+name: undersized_hub
+description: Solar and cold store are too small for the milk. The system must use backup and raise an alert rather than fail quietly.
+seed: 3
+start: "2026-06-01T00:00:00+03:00"
+duration_hours: 48
+step_seconds: 60
+timezone: Africa/Nairobi
+weather:
+  cloudiness: 0.1
+site_file: config/sites/demo.yaml
+site_overrides:
+  id: undersized-site
+  name: Undersized Demo Centre
+  solar_kwp: 0.8
+  cold_store_kwh_thermal: 1.5
+  daily_milk_litres: 1800
+initial_state:
+  tank_temp_c: 4.0
+  milk_volume_l: 0
+  store_soc_pct: 75
+  battery_soc_pct: 50
+faults: []
+expect:
+  min_backup_kwh: 0.5
+  min_samples_above_safe_c: 1
+  safe_temp_c: 6
+  requires_controller: true

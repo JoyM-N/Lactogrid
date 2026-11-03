@@ -1,0 +1,24 @@
+name: evening_milk_spike
+description: Most of the milk arrives in the evening, when the sun is gone, so the cold store is the main cooling source overnight.
+seed: 4
+start: "2026-06-01T00:00:00+03:00"
+duration_hours: 48
+step_seconds: 60
+timezone: Africa/Nairobi
+weather:
+  cloudiness: 0.05
+site_file: config/sites/demo.yaml
+site_overrides:
+  id: evening-spike-site
+  name: Evening Spike Demo Centre
+physics_overrides:
+  morning_milk_fraction: 0.2
+  evening_milk_fraction: 0.8
+initial_state:
+  tank_temp_c: 4.0
+  milk_volume_l: 0
+  store_soc_pct: 75
+  battery_soc_pct: 80
+faults: []
+expect:
+  requires_controller: true

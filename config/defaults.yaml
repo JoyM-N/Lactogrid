@@ -1,0 +1,128 @@
+# Tunable numbers for LactoGrid. Python reads these; it does not hard-code them.
+# TODO(verify) marks a placeholder that is not a measured or contracted fact.
+
+physics:
+  milk_specific_heat_wh_per_l_c: 1.083
+  tank_shell_equivalent_l: 150
+  milk_arrival_temp_c: 30
+  heat_leak_kw_per_c: 0.03
+  collection_hour_local: 9
+  collection_minute_local: 0
+  morning_milk_fraction: 0.55
+  morning_start_hour: 6
+  morning_end_hour: 8
+  evening_milk_fraction: 0.45
+  evening_start_hour: 17
+  evening_end_hour: 19
+  solar_sunrise_hour: 6
+  solar_sunset_hour: 18
+  solar_peak_factor: 0.85
+  solar_sin_exponent: 1.3
+  ambient_base_c: 22
+  ambient_amplitude_c: 6
+  ambient_phase_hour: 9
+  ambient_period_hours: 12
+  # Slow deterministic cloud variation. Not a weather study. TODO(verify) shape against a real year.
+  cloud_noise_amplitudes: [0.08, 0.05, 0.03]
+  cloud_noise_period_hours: [6.0, 2.5, 1.2]
+
+compressor:
+  max_kw_electric: 3.0
+  cop_floor: 1.8
+  cop_intercept: 3.0
+  cop_slope_per_c: 0.04
+  cop_reference_ambient_c: 20
+
+cold_store:
+  max_draw_kw_thermal: 6.0
+  # The brief does not specify storage loss. 1.0 means we do not invent one.
+  charge_efficiency: 1.0
+
+tank:
+  setpoint_c: 4.0
+  hysteresis_c: 0.1
+  max_heat_removal_kw_thermal: 5.5
+  # Freeze guard inside the plant. Milk freezes near -0.5 C. TODO(verify) with the tank partner.
+  low_cutout_c: 1.0
+  backup_start_temp_c: 6.0
+  # Stop margin so backup does not chatter. Starting backup still requires 6.0 C.
+  backup_clear_temp_c: 5.5
+
+battery:
+  capacity_kwh: 3.0
+  charge_efficiency: 0.90
+  # Discharge efficiency was not specified, so the model adds no extra loss.
+  discharge_efficiency: 1.0
+  # TODO(verify) with the battery partner. Stops a 3 kWh pack being treated as unlimited power.
+  max_charge_kw: 1.5
+  max_discharge_kw: 1.5
+  min_soc_pct: 10
+
+aux:
+  # TODO(verify) measured pumps and lights at a real centre.
+  # 0.15 kW is a placeholder sized so the 3 kWh battery can cover a 12-hour night.
+  # 0.4 kW for 12 hours is 4.8 kWh, which the battery cannot hold, and the sunny-day
+  # backup budget is 2 kWh/day. See docs/DECISIONS.md.
+  load_kw: 0.15
+  backup_allowed: true
+
+controller:
+  interval_minutes: 15
+  store_target_soc_pct: 75
+  store_target_hysteresis_pct: 5
+  backup_store_max_kwh: 0.5
+  backup_store_clear_kwh: 1.0
+  sensor_min_plausible_c: -5
+  sensor_max_plausible_c: 45
+  stuck_window_minutes: 45
+  stuck_resolution_c: 0.1
+  stuck_expected_move_c: 0.3
+  safe_mode_compressor_fraction: 1.0
+  manual_override_default_minutes: 60
+  forecast_store_base_soc_pct: 75
+  forecast_store_extra_soc_pct: 25
+  forecast_cloud_gain: 2.5
+  forecast_aux_trim_store_soc_pct: 50
+  # The brief says trim pumps and lights below 50% store, but not by how much.
+  # TODO(verify) the trim fraction with operations.
+  forecast_aux_trim_fraction: 0.5
+
+sensors:
+  raw_retention_days: 7
+  rollup_minutes: 1
+
+sla:
+  milk_safe_temp_c: 6.0
+  cool_target_temp_c: 4.0
+  uptime_threshold_pct: 98
+  # TODO(verify) commercial discount table. These are placeholders, not a signed tariff.
+  discount_tiers:
+    - min_uptime_pct: 98
+      discount_pct: 0
+    - min_uptime_pct: 95
+      discount_pct: 5
+    - min_uptime_pct: 90
+      discount_pct: 10
+    - min_uptime_pct: 0
+      discount_pct: 20
+  prices_are_placeholders: true
+  # TODO(verify) tariff. 1.0 in currency XXX is demo arithmetic, not a Kenya Power or diesel price.
+  grid_price_per_kwh: 1.0
+  diesel_price_per_kwh: 1.0
+  price_currency: XXX
+
+alerts:
+  tank_over_temp_c: 6.0
+  tank_over_temp_minutes: 10
+  edge_offline_minutes: 30
+  rate_limit_minutes: 30
+  store_empty_kwh: 0.5
+  recipients:
+    - console:site-manager
+
+sync:
+  batch_size: 200
+  retry_seconds: 30
+
+watchdog:
+  timeout_seconds: 60

@@ -1,0 +1,18 @@
+name: cloudy_day
+description: Overcast day on the demo hub. The store has to carry more of the cooling.
+seed: 2
+start: "2026-06-01T00:00:00+03:00"
+duration_hours: 48
+step_seconds: 60
+timezone: Africa/Nairobi
+weather:
+  cloudiness: 0.8
+site_file: config/sites/demo.yaml
+initial_state:
+  tank_temp_c: 4.0
+  milk_volume_l: 0
+  store_soc_pct: 75
+  battery_soc_pct: 80
+faults: []
+expect:
+  requires_controller: true
